@@ -1,12 +1,12 @@
-$max-width: 550px;
+$max-width: 1000px;
 
 *{
 	margin: 0;
 	padding: 0;
 }
 body{
-	font-family: $font-default;
-	font-size: 18px;
+	font-family: "proxima-nova-1", "proxima-nova-2", "Helvetica Neue", Arial, sans-serif;
+	font-size: 16px;
 	font-weight: 300;
 	line-height: 1.5;
 	background: $color-background;
@@ -29,6 +29,7 @@ h2{
 	font-weight:300;
 }
 h3{
+	
 	font-size: 20px;
 	line-height: 1.2;
 	margin: 1.2em 0 0 0;
