@@ -17,6 +17,8 @@ For the past few weeks I have been trying to write a little embedded
 DSL. The goal is to be able to easily generate bindings between OCaml
 and C, and maybe Objective-C, too.
 
+<!--more-->
+
 So far, I have written a simplified representation of C
 [^cil-reference] using normal algebraic datatypes. This will allow me
 to have a loosely-typed intermediate representation, which I can then
