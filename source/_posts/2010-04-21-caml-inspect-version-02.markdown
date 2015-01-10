@@ -17,7 +17,9 @@ instructions), documentation using ocamldoc (`make htdoc`), and
 packaging using the `-pack` option of the OCaml compiler. And easier
 installation with make using the new install/uninstall targets.
 
-The next step will be to host the project on
-http://forge.ocamlcore.org/, so it has more exposure to the intended
-target audience. I’ve already registered the project as
-caml-inspect. I am currently awaiting approval from the site admins.
+The next step will be to host the project on [OCaml Forge][OF], so it
+has more exposure to the intended target audience. I’ve already
+registered the project as caml-inspect. I am currently awaiting
+approval from the site admins.
+
+[OF]: https://forge.ocamlcore.org/

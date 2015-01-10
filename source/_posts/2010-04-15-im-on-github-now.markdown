@@ -11,8 +11,8 @@ categories:
  - caml-inspect
 ---
 
-It is done. I now have an account on Github and my [repo0][first open source
-repository] has just been pushed. Feel free to take it for a spin. And
+It is done. I now have an account on Github and my [first open source
+repository][repo0] has just been pushed. Feel free to take it for a spin. And
 don’t forget to tell me what you think of it.
 
 Anyway, after downloading and unpacking the library, just follow the
