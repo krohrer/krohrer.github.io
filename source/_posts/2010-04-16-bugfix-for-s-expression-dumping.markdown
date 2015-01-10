@@ -13,8 +13,6 @@ categories:
  - bugfix
 ---
 
-{%img center /images/Screen+shot+2010-04-16+at+12.45.56+AM.png %}
-
 I’ve pushed a new version of the code. The code to dump s-expressions
 did not handle references correctly, but it should now.
 

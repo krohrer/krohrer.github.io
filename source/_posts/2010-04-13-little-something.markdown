@@ -14,10 +14,8 @@ categories:
  - preview
 ---
 
-{% img center /images/Screen+shot+2010-04-14+at+12.16.07+AM.png %}
-
 Here is a little preview of what I am working on at the moment. It is
-a little library for the beautiful [^ocaml-warts] [OCaml] programming language
+a small library for the beautiful [^ocaml-warts] [OCaml] programming language
 that allows one to inspect any OCaml value in the [REPL] by dumping
 pretty printed [S-expressions] or producing output for [Graphviz].
 

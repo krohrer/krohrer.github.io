@@ -9,8 +9,8 @@ categories:
  - inspect
 ---
 
-{%img center /images/Screen+shot+2010-04-14+at+10.05.42+PM.png %}
-{%img center /images/Screen+shot+2010-04-14+at+10.06.14+PM.png %}
+{%img center /images/bsp-tree-dot-dump.png %}
+{%img center /images/bsp-tree-opengl.png %}
 
 The main motive behind the Inspect library was to be able to see the
 actual datastructure of a previous project of mine.
