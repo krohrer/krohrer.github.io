@@ -8,7 +8,9 @@ categories:
 
 A new year, a new [Octopress]-based blog.
 
-I hope to blog again this year. I'm currently working on a variant of Oleg Kiselyov's [Iteratees][OlegIt] in OCaml that might be interesting. We will see.
+I hope to blog again this year. I'm currently working on a variant of
+Oleg Kiselyov's [Iteratees][OlegIt] in OCaml, which could be
+interesting.
 
 [OlegIt]: http://okmij.org/ftp/Streams.html
 [Octopress]: http://octopress.org
