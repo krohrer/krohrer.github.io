@@ -1,4 +1,3 @@
-<!--
 ---
 layout: post
 title: "Job interview question"
@@ -6,7 +5,6 @@ date: 2013-05-07
 comments: false
 published: false
 ---
--->
 
 So I had a job interview with a trading firm. They posed the following
 question:

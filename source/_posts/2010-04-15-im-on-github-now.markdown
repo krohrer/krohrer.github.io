@@ -11,5 +11,46 @@ categories:
  - caml-inspect
 ---
 
-<div class='post'>
-<a href="http://4.bp.blogspot.com/_TpVt3um4eVw/S8cpygYwtDI/AAAAAAAAABs/o_epr956R-I/s1600/Screen+shot+2010-04-15+at+12.03.24+AM.png" onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}"><img alt="" border="0" id="BLOGGER_PHOTO_ID_5460379020874003506" src="http://4.bp.blogspot.com/_TpVt3um4eVw/S8cpygYwtDI/AAAAAAAAABs/o_epr956R-I/s400/Screen+shot+2010-04-15+at+12.03.24+AM.png" style="cursor: hand; cursor: pointer; display: block; height: 307px; margin: 0px auto 10px; text-align: center; width: 400px;" /></a><br />It is done. I now have an account on Github and my first <a href="http://github.com/krohrer/caml-inspect/">open source repository</a> has just been pushed. Feel free to take it for a spin. And don't forget to tell me what you think of it.<br /><div><br /></div><div>Anyway, after downloading and unpacking the library, just follow the installation instructions in the README file. If you have <a href="http://projects.camlcity.org/projects/findlib.html/">findlib</a> installed, using the library is as simple as typing</div><div><br /></div><div><span class="Apple-style-span" style="font-family: 'courier new';">&gt; #use "topfind";;</span></div><div><span class="Apple-style-span" style="font-family: 'courier new';">&gt; #require "inspect";;</span></div><div><br /></div><div>into your OCaml prompt. I suggest you open the Inspect module as well.</div><div><br /></div><div><span class="Apple-style-span" style="font-family: 'courier new';">&gt; open Inspect;;</span></div><div><span class="Apple-style-span" style="font-family: arial;"><br /></span></div><div><span class="Apple-style-span" style="font-family: arial;">For starters, both the Dot and the Sexpr library provide a <span class="Apple-style-span" style="font-family: 'courier new';">test_data</span> function to generate some interesting data to dump.</span></div><div><span class="Apple-style-span" style="font-family: arial, serif;"><br /></span></div><div><span class="Apple-style-span" style="font-family: 'courier new';">&gt; Sexpr.dump (Sexpr.test_data ());;</span></div><div><span class="Apple-style-span" style="font-family: 'courier new', serif;">&gt; Dot.dump (Dot.test_data ());;</span></div><div><span class="Apple-style-span" style="font-family: 'courier new', serif;"><br /></span></div><div><span class="Apple-style-span" style="font-family: arial, serif;">It is naturally also possible to let the dump functions inspect themselves:</span></div><div><span class="Apple-style-span" style="font-family: 'courier new', serif;"><br /></span></div><div><span class="Apple-style-span" style="font-family: 'courier new', serif;">&gt; Sexpr.dump Sexpr.dump;;</span></div><div><span class="Apple-style-span" style="font-family: 'courier new', serif;">&gt; Dot.dump Dot.dump;;</span></div><div><span class="Apple-style-span" style="font-family: 'courier new', serif;"><br /></span></div><div><span class="Apple-style-span" style="font-family: arial;">If you are on a Mac, the <span class="Apple-style-span" style="font-family: 'courier new', serif;">Inspect.Dot.dump_osx<span class="Apple-style-span" style="font-family: arial, serif;"> function should be of interest. It writes the DOT output to a temporary file, uses Graphviz to generate the graph, and displays the results using the open command.</span></span></span></div><div><span class="Apple-style-span" style="font-family: 'courier new', serif;"><span class="Apple-style-span" style="font-family: arial, serif;"><br /></span></span></div><div><span class="Apple-style-span" style="font-family: 'courier new';">&gt; Dot.dump_osx Dot.dump_osx;;</span></div><div><span class="Apple-style-span" style="font-family: arial, serif;"><br /></span></div><div><span class="Apple-style-span" style="font-family: arial, serif;">It goes without saying that you should have Graphviz installed for this last part to work.</span></div><div><span class="Apple-style-span" style="font-family: arial, serif;"><br /></span></div><div><span class="Apple-style-span" style="font-family: arial, serif;">Have fun!</span></div></div>
+It is done. I now have an account on Github and my [repo0][first open source
+repository] has just been pushed. Feel free to take it for a spin. And
+don’t forget to tell me what you think of it.
+
+Anyway, after downloading and unpacking the library, just follow the
+installation instructions in the README file. If you have [findlib]
+installed, using the library is as simple as typing
+
+```ocaml
+#use “topfind”;;
+#require “inspect”;;
+```
+
+into your OCaml prompt. I suggest you open the Inspect module as well.
+
+```ocaml
+open Inspect
+```
+
+For starters, both the Dot and the Sexpr library provide a test_data
+function to generate some interesting data to dump.
+
+```ocaml
+Sexpr.dump (Sexpr.test_data ());;
+Dot.dump (Dot.test_data ());;
+```
+
+If you are on a Mac, the Inspect.Dot.dump_osx function should be of
+interest. It writes the DOT output to a temporary file, uses Graphviz
+to generate the graph, and displays the results using the open
+command.
+
+```ocaml
+Dot.dump_osx (Dot.test_data());;
+```
+
+It goes without saying that you should have Graphviz installed for
+this last part to work.
+
+Have fun!
+
+[repo0]: http://github.com/krohrer/caml-inspect/
+[findlib]: http://projects.camlcity.org/projects/findlib.html
