@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[λ-müesli]]></title>
+  <link href="http://krohrer.github.io/atom.xml" rel="self"/>
+  <link href="http://krohrer.github.io/"/>
+  <updated>2015-01-10T05:28:57+01:00</updated>
+  <id>http://krohrer.github.io/</id>
+  <author>
+    <name><![CDATA[Kaspar M. Rohrer]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[New Year's Resolutions]]></title>
+    <link href="http://krohrer.github.io/blog/2015/01/09/new-years-resolutions/"/>
+    <updated>2015-01-09T22:23:35+01:00</updated>
+    <id>http://krohrer.github.io/blog/2015/01/09/new-years-resolutions</id>
+    <content type="html"><![CDATA[<p>A new year, a new <a href="http://octopress.org">Octopress</a>-based blog.</p>
+
+<p>I hope to blog again this year. I’m currently working on a variant of
+Oleg Kiselyov’s <a href="http://okmij.org/ftp/Streams.html">Iteratees</a> in OCaml, which could be
+interesting.</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Taming the Beast That Is GADT]]></title>
+    <link href="http://krohrer.github.io/blog/2012/12/13/taming-beast-that-is-gadt/"/>
+    <updated>2012-12-13T00:00:00+01:00</updated>
+    <id>http://krohrer.github.io/blog/2012/12/13/taming-beast-that-is-gadt</id>
+    <content type="html"><![CDATA[<p>For the past few weeks I have been trying to write a little embedded
+DSL. The goal is to be able to easily generate bindings between OCaml
+and C, and maybe Objective-C, too.</p>
+
+<!--more-->
+
+<p>So far, I have written a simplified representation of C
+<sup id="fnref:cil-reference"><a href="#fn:cil-reference" class="footnote">1</a></sup> using normal algebraic datatypes. This will allow me
+to have a loosely-typed intermediate representation, which I can then
+pretty print. The pretty printer I have implemented using the Format
+module from stdlib. It already supports types, expressions and
+statements, but no global definitions and declarations, yet.  To print
+OCaml code, I will use Format again for a first draft, and switch to
+CamlP4, should the need arise. I briefly considered using CamlP4
+quotations for the whole project, but that would necessitate
+quotations and parsers for each language to bind. Unfortunately, my
+parser-fu is not up-to scratch, and the sparse documentation for
+CamlP4 is not helping either. <sup id="fnref:camlp4-notes"><a href="#fn:camlp4-notes" class="footnote">2</a></sup> Maybe it is time to dust
+of the dragon books?</p>
+
+<p>The EDSL that I am currently working on uses a feature just recently
+introduced with OCaml 4.0: <a href="http://caml.inria.fr/pub/docs/manual-ocaml-4.00/manual021.html#toc85">generalized algebraic datatypes</a>, or
+GADT for short. This will allow me to use OCaml’s type-inference and
+-checking for the FFI description language. So basically, I’m writing
+a strongly-typed code generator in OCaml. When run, this generator
+will in turn create the necessary OCaml and C code, constituting a
+particular OCaml foreign function interface.</p>
+
+<p>One thing I’ve come to notice when working with GADTs is that it helps
+to have as much type annotations as possible in the beginning. Only
+later on, when everything is working, can some annotations be
+removed. Otherwise, there will be a lot of strange type errors. Which
+for a mere software engineer like me are sometimes hard to
+understand. With type annotations, the error messages are usually much
+clearer.  I’ve found that recursive functions help a lot, as they are
+probably easiest to annotate and allow me to structure the code a
+little better. A concrete example is the following bind function:</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+</pre></td><td class="code"><pre><code class="ocaml"><span class="line"><span class="k">let</span> <span class="k">rec</span> <span class="n">bind</span> <span class="o">:</span> <span class="k">type</span> <span class="n">s</span> <span class="n">r</span><span class="o">.</span> <span class="o">(</span><span class="n">r</span><span class="o">,</span><span class="n">s</span><span class="o">)</span> <span class="n">fn</span> <span class="o">-&gt;</span> <span class="n">s</span> <span class="o">-&gt;</span> <span class="n">r</span> <span class="o">=</span> <span class="k">fun</span> <span class="n">fs</span> <span class="n">f</span> <span class="o">-&gt;</span>
+</span><span class="line">  <span class="k">match</span> <span class="n">fs</span> <span class="k">with</span>
+</span><span class="line">  <span class="o">|</span> <span class="nc">FVoid</span> <span class="o">_</span> <span class="o">-&gt;</span> <span class="n">f</span>
+</span><span class="line">  <span class="o">|</span> <span class="nc">FLambda</span> <span class="o">(</span><span class="n">t</span><span class="o">,</span><span class="n">n</span><span class="o">,</span><span class="n">fs&#39;</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="k">let</span> <span class="n">x</span> <span class="o">=</span> <span class="nc">XId</span> <span class="o">(</span><span class="n">t</span><span class="o">,</span><span class="n">n</span><span class="o">)</span> <span class="k">in</span> <span class="n">bind</span> <span class="n">fs&#39;</span> <span class="o">(</span><span class="n">f</span> <span class="n">x</span><span class="o">)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>With mutually recursive functions and additional type informations,
+the above example would look like this:</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+</pre></td><td class="code"><pre><code class="ocaml"><span class="line"><span class="k">let</span> <span class="k">rec</span> <span class="n">bind</span> <span class="o">:</span>
+</span><span class="line">  <span class="k">type</span> <span class="n">s</span> <span class="n">r</span><span class="o">.</span> <span class="o">(</span><span class="n">r</span><span class="o">,</span><span class="n">s</span><span class="o">)</span> <span class="n">fn</span> <span class="o">-&gt;</span> <span class="n">s</span> <span class="o">-&gt;</span> <span class="n">r</span> <span class="o">=</span>
+</span><span class="line">      <span class="k">fun</span> <span class="n">fs</span> <span class="n">f</span> <span class="o">-&gt;</span>
+</span><span class="line">        <span class="k">match</span> <span class="n">fs</span> <span class="k">with</span>
+</span><span class="line">        <span class="o">|</span> <span class="nc">FVoid</span> <span class="o">_</span> <span class="o">-&gt;</span> <span class="n">bind0</span> <span class="n">f</span>
+</span><span class="line">        <span class="o">|</span> <span class="nc">FLambda</span> <span class="o">(</span><span class="n">t</span><span class="o">,</span><span class="n">n</span><span class="o">,</span><span class="n">fs&#39;</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">bind1</span> <span class="n">t</span> <span class="n">n</span> <span class="n">fs&#39;</span> <span class="n">f</span>
+</span><span class="line"><span class="ow">and</span> <span class="n">bind0</span> <span class="o">:</span>
+</span><span class="line">  <span class="k">type</span> <span class="n">a</span><span class="o">.</span> <span class="n">a</span> <span class="n">x</span> <span class="o">-&gt;</span> <span class="n">a</span> <span class="n">x</span> <span class="o">=</span>
+</span><span class="line">      <span class="k">fun</span> <span class="n">f</span> <span class="o">-&gt;</span> <span class="n">f</span>
+</span><span class="line"><span class="ow">and</span> <span class="n">bind1</span> <span class="o">:</span>
+</span><span class="line">  <span class="k">type</span> <span class="n">a</span> <span class="n">r</span> <span class="n">s</span><span class="o">.</span> <span class="n">a</span> <span class="n">t</span> <span class="o">-&gt;</span> <span class="kt">string</span> <span class="o">-&gt;</span> <span class="o">(</span><span class="n">r</span> <span class="n">x</span><span class="o">,</span> <span class="n">s</span><span class="o">)</span> <span class="n">fn</span> <span class="o">-&gt;</span> <span class="o">(</span><span class="n">a</span> <span class="n">x</span> <span class="o">-&gt;</span> <span class="n">s</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">r</span> <span class="n">x</span> <span class="o">=</span>
+</span><span class="line">      <span class="k">fun</span> <span class="n">t</span> <span class="n">n</span> <span class="n">fs</span> <span class="n">f</span> <span class="o">-&gt;</span>
+</span><span class="line">        <span class="k">let</span> <span class="n">x</span> <span class="o">=</span> <span class="nc">XId</span> <span class="o">(</span><span class="n">t</span><span class="o">,</span><span class="n">n</span><span class="o">)</span> <span class="k">in</span> <span class="n">bind</span> <span class="n">fs</span> <span class="o">(</span><span class="n">f</span> <span class="n">x</span><span class="o">)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>With the following types, interested readers should be able to toy
+around with the above functions in OCaml (Version 4.0 is required):</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+</pre></td><td class="code"><pre><code class="ocaml"><span class="line"><span class="c">(* Type of a value *)</span>
+</span><span class="line"><span class="k">type</span> <span class="o">_</span> <span class="n">t</span> <span class="o">=</span>
+</span><span class="line">  <span class="o">|</span> <span class="nc">TVoid</span>       <span class="o">:</span> <span class="kt">unit</span> <span class="n">t</span>
+</span><span class="line">  <span class="o">|</span> <span class="nc">TInt</span>        <span class="o">:</span> <span class="kt">int</span> <span class="n">t</span>
+</span><span class="line">  <span class="o">|</span> <span class="nc">TFun</span>        <span class="o">:</span> <span class="o">(</span><span class="k">&#39;</span><span class="n">r</span><span class="o">,</span><span class="k">&#39;</span><span class="n">a</span><span class="o">)</span> <span class="n">fn</span>                    <span class="o">-&gt;</span> <span class="o">(</span><span class="k">&#39;</span><span class="n">r</span><span class="o">,</span><span class="k">&#39;</span><span class="n">a</span><span class="o">)</span> <span class="n">fn</span> <span class="n">t</span>
+</span><span class="line"><span class="c">(* Values / expressions *)</span>
+</span><span class="line"><span class="ow">and</span> <span class="o">_</span> <span class="n">x</span> <span class="o">=</span>
+</span><span class="line">  <span class="o">|</span> <span class="nc">XInt</span>        <span class="o">:</span> <span class="kt">int</span>                           <span class="o">-&gt;</span> <span class="kt">int</span> <span class="n">x</span>
+</span><span class="line">  <span class="o">|</span> <span class="nc">XId</span>         <span class="o">:</span> <span class="k">&#39;</span><span class="n">a</span> <span class="n">t</span> <span class="o">*</span> <span class="n">id</span>                     <span class="o">-&gt;</span> <span class="k">&#39;</span><span class="n">a</span> <span class="n">x</span>
+</span><span class="line">  <span class="o">|</span> <span class="nc">XAdd</span>        <span class="o">:</span> <span class="kt">int</span> <span class="n">x</span> <span class="o">*</span> <span class="kt">int</span> <span class="n">x</span>                 <span class="o">-&gt;</span> <span class="kt">int</span> <span class="n">x</span>
+</span><span class="line">  <span class="o">|</span> <span class="nc">XApp0</span>       <span class="o">:</span> <span class="o">(</span><span class="k">&#39;</span><span class="n">r</span> <span class="n">x</span><span class="o">,</span><span class="k">&#39;</span><span class="n">r</span> <span class="n">x</span><span class="o">)</span> <span class="n">fn</span> <span class="n">x</span>              <span class="o">-&gt;</span> <span class="k">&#39;</span><span class="n">r</span> <span class="n">x</span>
+</span><span class="line">  <span class="o">|</span> <span class="nc">XApp1</span>       <span class="o">:</span> <span class="o">(</span><span class="k">&#39;</span><span class="n">r</span><span class="o">,</span><span class="k">&#39;</span><span class="n">a</span> <span class="n">x</span> <span class="o">-&gt;</span> <span class="k">&#39;</span><span class="n">b</span><span class="o">)</span> <span class="n">fn</span> <span class="n">x</span> <span class="o">*</span> <span class="k">&#39;</span><span class="n">a</span> <span class="n">x</span>   <span class="o">-&gt;</span> <span class="o">(</span><span class="k">&#39;</span><span class="n">r</span><span class="o">,</span><span class="k">&#39;</span><span class="n">b</span><span class="o">)</span> <span class="n">fn</span> <span class="n">x</span>
+</span><span class="line"><span class="c">(* Function signature *)</span>
+</span><span class="line"><span class="ow">and</span> <span class="o">(_,_)</span> <span class="n">fn</span> <span class="o">=</span>
+</span><span class="line">  <span class="o">|</span> <span class="nc">FVoid</span>       <span class="o">:</span> <span class="k">&#39;</span><span class="n">r</span> <span class="n">t</span>                          <span class="o">-&gt;</span> <span class="o">(</span><span class="k">&#39;</span><span class="n">r</span> <span class="n">x</span><span class="o">,</span><span class="k">&#39;</span><span class="n">r</span> <span class="n">x</span><span class="o">)</span> <span class="n">fn</span>
+</span><span class="line">  <span class="o">|</span> <span class="nc">FLambda</span>     <span class="o">:</span> <span class="k">&#39;</span><span class="n">a</span> <span class="n">t</span> <span class="o">*</span> <span class="n">id</span> <span class="o">*</span> <span class="o">(</span><span class="k">&#39;</span><span class="n">r</span> <span class="n">x</span><span class="o">,</span><span class="k">&#39;</span><span class="n">b</span><span class="o">)</span> <span class="n">fn</span>      <span class="o">-&gt;</span> <span class="o">(</span><span class="k">&#39;</span><span class="n">r</span> <span class="n">x</span><span class="o">,</span><span class="k">&#39;</span><span class="n">a</span> <span class="n">x</span> <span class="o">-&gt;</span> <span class="k">&#39;</span><span class="n">b</span><span class="o">)</span> <span class="n">fn</span>
+</span><span class="line"><span class="c">(* Identifier *)</span>
+</span><span class="line"><span class="ow">and</span> <span class="n">id</span> <span class="o">=</span> <span class="kt">string</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<div class="footnotes">
+  <ol>
+    <li id="fn:cil-reference">
+      <p>I am aware of <a href="https://github.com/cil-project/cil">CIL</a>, but it seems to heavyweight for my purposes, and does not support Objective-C. And I view this whole exercise as a learning experience. <a href="#fnref:cil-reference" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:camlp4-notes">
+      <p>There is now at least a wiki for <a href="http://brion.inria.fr/gallium/index.php/Camlp4">CamlP4</a>. And Andrei Formiga has a <a href="http://andreiformiga.com/blog/?p=99">nice collection</a> of links on the subject. <a href="#fnref:camlp4-notes" class="reversefootnote">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Caml-inspect: Version 0.2]]></title>
+    <link href="http://krohrer.github.io/blog/2010/04/21/caml-inspect-version-02/"/>
+    <updated>2010-04-21T00:00:00+02:00</updated>
+    <id>http://krohrer.github.io/blog/2010/04/21/caml-inspect-version-02</id>
+    <content type="html"><![CDATA[<p>I’ve pushed a new version of the Caml-library to github, and I must
+say, I’m really starting to like this whole open-source thing. It’s
+quite exciting. Amongst the changes are an updated <code>README</code> (usage
+instructions), documentation using ocamldoc (<code>make htdoc</code>), and
+packaging using the <code>-pack</code> option of the OCaml compiler. And easier
+installation with make using the new install/uninstall targets.</p>
+
+<p>The next step will be to host the project on
+http://forge.ocamlcore.org/, so it has more exposure to the intended
+target audience. I’ve already registered the project as
+caml-inspect. I am currently awaiting approval from the site admins.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Bugfix for S-expression Dumping]]></title>
+    <link href="http://krohrer.github.io/blog/2010/04/16/bugfix-for-s-expression-dumping/"/>
+    <updated>2010-04-16T00:00:00+02:00</updated>
+    <id>http://krohrer.github.io/blog/2010/04/16/bugfix-for-s-expression-dumping</id>
+    <content type="html"><![CDATA[<p><img class="center" src="http://krohrer.github.io/images/Screen+shot+2010-04-16+at+12.45.56+AM.png" /></p>
+
+<p>I’ve pushed a new version of the code. The code to dump s-expressions
+did not handle references correctly, but it should now.</p>
+
+<p>Maybe next time, I should prove the correctness using <a href="http://www.lix.polytechnique.fr/coq/">Coq</a>. But then I
+would not be writing new code, would I?</p>
+
+<p>Ah, what a dilemma between theoretical exactness and practical
+application. I wonder if Haskell will bridge that gap elegantly. We
+never really had the time to get aquainted.</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[I'm on Github Now]]></title>
+    <link href="http://krohrer.github.io/blog/2010/04/15/im-on-github-now/"/>
+    <updated>2010-04-15T00:00:00+02:00</updated>
+    <id>http://krohrer.github.io/blog/2010/04/15/im-on-github-now</id>
+    <content type="html"><![CDATA[<p>It is done. I now have an account on Github and my [repo0][first open source
+repository] has just been pushed. Feel free to take it for a spin. And
+don’t forget to tell me what you think of it.</p>
+
+<p>Anyway, after downloading and unpacking the library, just follow the
+installation instructions in the README file. If you have <a href="http://projects.camlcity.org/projects/findlib.html">findlib</a>
+installed, using the library is as simple as typing</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+</pre></td><td class="code"><pre><code class="ocaml"><span class="line"><span class="o">#</span><span class="n">use</span> <span class="err">“</span><span class="n">topfind</span><span class="err">”</span><span class="o">;;</span>
+</span><span class="line"><span class="o">#</span><span class="n">require</span> <span class="err">“</span><span class="n">inspect</span><span class="err">”</span><span class="o">;;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>into your OCaml prompt. I suggest you open the Inspect module as well.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="ocaml"><span class="line"><span class="k">open</span> <span class="nc">Inspect</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>For starters, both the Dot and the Sexpr library provide a test_data
+function to generate some interesting data to dump.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+</pre></td><td class="code"><pre><code class="ocaml"><span class="line"><span class="nn">Sexpr</span><span class="p">.</span><span class="n">dump</span> <span class="o">(</span><span class="nn">Sexpr</span><span class="p">.</span><span class="n">test_data</span> <span class="bp">()</span><span class="o">);;</span>
+</span><span class="line"><span class="nn">Dot</span><span class="p">.</span><span class="n">dump</span> <span class="o">(</span><span class="nn">Dot</span><span class="p">.</span><span class="n">test_data</span> <span class="bp">()</span><span class="o">);;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>If you are on a Mac, the Inspect.Dot.dump_osx function should be of
+interest. It writes the DOT output to a temporary file, uses Graphviz
+to generate the graph, and displays the results using the open
+command.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="ocaml"><span class="line"><span class="nn">Dot</span><span class="p">.</span><span class="n">dump_osx</span> <span class="o">(</span><span class="nn">Dot</span><span class="p">.</span><span class="n">test_data</span><span class="bp">()</span><span class="o">);;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>It goes without saying that you should have Graphviz installed for
+this last part to work.</p>
+
+<p>Have fun!</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Object-dump of a BSP-tree]]></title>
+    <link href="http://krohrer.github.io/blog/2010/04/14/object-dump-of-bsp-tree/"/>
+    <updated>2010-04-14T00:00:00+02:00</updated>
+    <id>http://krohrer.github.io/blog/2010/04/14/object-dump-of-bsp-tree</id>
+    <content type="html"><![CDATA[<p><img class="center" src="http://krohrer.github.io/images/Screen+shot+2010-04-14+at+10.05.42+PM.png" />
+<img class="center" src="http://krohrer.github.io/images/Screen+shot+2010-04-14+at+10.06.14+PM.png" /></p>
+
+<p>The main motive behind the Inspect library was to be able to see the
+actual datastructure of a previous project of mine.</p>
+
+<p>Seems like some things could be optimized…</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[A Little Something...]]></title>
+    <link href="http://krohrer.github.io/blog/2010/04/13/little-something/"/>
+    <updated>2010-04-13T00:00:00+02:00</updated>
+    <id>http://krohrer.github.io/blog/2010/04/13/little-something</id>
+    <content type="html"><![CDATA[<p><img class="center" src="http://krohrer.github.io/images/Screen+shot+2010-04-14+at+12.16.07+AM.png" /></p>
+
+<p>Here is a little preview of what I am working on at the moment. It is
+a little library for the beautiful <sup id="fnref:ocaml-warts"><a href="#fn:ocaml-warts" class="footnote">1</a></sup> <a href="http://caml.inria.fr/ocaml/index.en.html">OCaml</a> programming language
+that allows one to inspect any OCaml value in the <a href="http://en.wikipedia.org/wiki/Read-eval-print_loop">REPL</a> by dumping
+pretty printed <a href="http://en.wikipedia.org/wiki/S-expression">S-expressions</a> or producing output for <a href="http://www.graphviz.org">Graphviz</a>.</p>
+
+<p>Something along the lines of</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+</pre></td><td class="code"><pre><code class="ocaml"><span class="line"><span class="k">val</span> <span class="n">dump</span> <span class="o">:</span> <span class="o">?</span><span class="n">context</span><span class="o">:</span><span class="n">dump_context</span> <span class="o">-&gt;</span> <span class="err">‘</span><span class="n">a</span> <span class="o">-&gt;</span> <span class="kt">unit</span>
+</span><span class="line"><span class="k">val</span> <span class="n">dot</span> <span class="o">:</span> <span class="o">?</span><span class="n">context</span><span class="o">:</span><span class="n">dot_context</span> <span class="o">-&gt;</span> <span class="err">‘</span><span class="n">a</span> <span class="o">-&gt;</span> <span class="kt">unit</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>There will be more.</p>
+
+<p>Oh, and I am trying out the <a href="https://github.com/mmottl/ocaml-makefile">OCamlMakefile</a> as a substitute for
+<a href="http://omake.metaprl.org/index.html">OMake</a>, and I must say I really like it so far. Although OMake has
+served me well in the past.</p>
+
+<div class="footnotes">
+  <ol>
+    <li id="fn:ocaml-warts">
+      <p>Too be fair, she has some warts, especially with regard to her looks (the quirky syntax). Plus, it can be hard to understand the things she throws at you when you do something wrong (the error messages).  After spending some quality time with OCaml, however, I never ever want to go back to the beast that is C++. That was such an abusive relationship. C on the other hand… <a href="#fnref:ocaml-warts" class="reversefootnote">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Alright, Here Goes Nothing.]]></title>
+    <link href="http://krohrer.github.io/blog/2010/04/13/alright-here-goes-nothing/"/>
+    <updated>2010-04-13T00:00:00+02:00</updated>
+    <id>http://krohrer.github.io/blog/2010/04/13/alright-here-goes-nothing</id>
+    <content type="html"><![CDATA[<p>Yeah, well…</p>
+
+<p>The time has come for me to expose myself and my interests to the
+whole world.</p>
+
+<p>Just sitting in the proverbial basement and hacking the nights away,
+absorbing knowledge (well, mostly just surfing the
+<a href="http://welcometointernet.org">internet</a><sup id="fnref:dont-click"><a href="#fn:dont-click" class="footnote">1</a></sup> ;-) and never sharing any
+output with the world does not cut it for me anymore, I guess.</p>
+
+<p>I will still enjoy spending the occasional sleepless night slouched in
+front of my warmly glowing monitor, with the cursor eagerly blinking
+while Emacs patiently waits for my input. However, as of this day, I
+will also try to share some of my ideas and thoughts with the rest of
+the world (or at least the miniscule part of it that might be
+interested in what I have to say).</p>
+
+<p>That’s all for now. More to follow.</p>
+
+<div class="footnotes">
+  <ol>
+    <li id="fn:dont-click">
+      <p>Don’t click that link, please. <a href="#fnref:dont-click" class="reversefootnote">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+]]></content>
+  </entry>
+  
+</feed>

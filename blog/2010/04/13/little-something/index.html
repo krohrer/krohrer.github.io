@@ -1,0 +1,235 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>A Little Something&#8230; - λ-müesli</title>
+  <meta name="author" content="Kaspar M. Rohrer">
+
+  
+  <meta name="description" content="Here is a little preview of what I am working on at the moment. It is
+a little library for the beautiful 1 OCaml programming language
+that allows &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://krohrer.github.io/blog/2010/04/13/little-something">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="λ-müesli" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">λ-müesli</a></h1>
+  
+    <h2>Now with crunchy closures! And rich in mutable state.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="krohrer.github.io">
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/about">About</a></li>
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">A Little Something&#8230;</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2010-04-13'><span class='date'><span class='date-month'>Apr</span> <span class='date-day'>13</span><span class='date-suffix'>th</span>, <span class='date-year'>2010</span></span> <span class='time'>12:00 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p><img class="center" src="/images/Screen+shot+2010-04-14+at+12.16.07+AM.png" /></p>
+
+<p>Here is a little preview of what I am working on at the moment. It is
+a little library for the beautiful <sup id="fnref:ocaml-warts"><a href="#fn:ocaml-warts" class="footnote">1</a></sup> <a href="http://caml.inria.fr/ocaml/index.en.html">OCaml</a> programming language
+that allows one to inspect any OCaml value in the <a href="http://en.wikipedia.org/wiki/Read-eval-print_loop">REPL</a> by dumping
+pretty printed <a href="http://en.wikipedia.org/wiki/S-expression">S-expressions</a> or producing output for <a href="http://www.graphviz.org">Graphviz</a>.</p>
+
+<p>Something along the lines of</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+</pre></td><td class="code"><pre><code class="ocaml"><span class="line"><span class="k">val</span> <span class="n">dump</span> <span class="o">:</span> <span class="o">?</span><span class="n">context</span><span class="o">:</span><span class="n">dump_context</span> <span class="o">-&gt;</span> <span class="err">‘</span><span class="n">a</span> <span class="o">-&gt;</span> <span class="kt">unit</span>
+</span><span class="line"><span class="k">val</span> <span class="n">dot</span> <span class="o">:</span> <span class="o">?</span><span class="n">context</span><span class="o">:</span><span class="n">dot_context</span> <span class="o">-&gt;</span> <span class="err">‘</span><span class="n">a</span> <span class="o">-&gt;</span> <span class="kt">unit</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>There will be more.</p>
+
+<p>Oh, and I am trying out the <a href="https://github.com/mmottl/ocaml-makefile">OCamlMakefile</a> as a substitute for
+<a href="http://omake.metaprl.org/index.html">OMake</a>, and I must say I really like it so far. Although OMake has
+served me well in the past.</p>
+
+<div class="footnotes">
+  <ol>
+    <li id="fn:ocaml-warts">
+      <p>Too be fair, she has some warts, especially with regard to her looks (the quirky syntax). Plus, it can be hard to understand the things she throws at you when you do something wrong (the error messages).  After spending some quality time with OCaml, however, I never ever want to go back to the beast that is C++. That was such an abusive relationship. C on the other hand… <a href="#fnref:ocaml-warts" class="reversefootnote">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Kaspar M. Rohrer</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2010-04-13'><span class='date'><span class='date-month'>Apr</span> <span class='date-day'>13</span><span class='date-suffix'>th</span>, <span class='date-year'>2010</span></span> <span class='time'>12:00 am</span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/graphviz/'>graphviz</a>, <a class='category' href='/blog/categories/not-c-plus-plus/'>not c++</a>, <a class='category' href='/blog/categories/ocaml/'>ocaml</a>, <a class='category' href='/blog/categories/ocamlmakefile/'>ocamlmakefile</a>, <a class='category' href='/blog/categories/omake/'>omake</a>, <a class='category' href='/blog/categories/preview/'>preview</a>, <a class='category' href='/blog/categories/repl/'>repl</a>, <a class='category' href='/blog/categories/s-expression/'>s-expression</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://krohrer.github.io/blog/2010/04/13/little-something/" data-via="" data-counturl="http://krohrer.github.io/blog/2010/04/13/little-something/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2010/04/13/alright-here-goes-nothing/" title="Previous Post: Alright, here goes nothing.">&laquo; Alright, here goes nothing.</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2010/04/14/object-dump-of-bsp-tree/" title="Next Post: Object-dump of a BSP-tree">Object-dump of a BSP-tree &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/01/09/new-years-resolutions/">New Year&#8217;s Resolutions</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/12/13/taming-beast-that-is-gadt/">Taming the Beast That Is GADT</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/04/21/caml-inspect-version-02/">Caml-inspect: Version 0.2</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/04/16/bugfix-for-s-expression-dumping/">Bugfix for S-expression Dumping</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/04/15/im-on-github-now/">I&#8217;m on Github Now</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - Kaspar M. Rohrer -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

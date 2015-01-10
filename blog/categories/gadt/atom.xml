@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Gadt | λ-müesli]]></title>
+  <link href="http://krohrer.github.io/blog/categories/gadt/atom.xml" rel="self"/>
+  <link href="http://krohrer.github.io/"/>
+  <updated>2015-01-10T05:28:57+01:00</updated>
+  <id>http://krohrer.github.io/</id>
+  <author>
+    <name><![CDATA[Kaspar M. Rohrer]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Taming the Beast That Is GADT]]></title>
+    <link href="http://krohrer.github.io/blog/2012/12/13/taming-beast-that-is-gadt/"/>
+    <updated>2012-12-13T00:00:00+01:00</updated>
+    <id>http://krohrer.github.io/blog/2012/12/13/taming-beast-that-is-gadt</id>
+    <content type="html"><![CDATA[<p>For the past few weeks I have been trying to write a little embedded
+DSL. The goal is to be able to easily generate bindings between OCaml
+and C, and maybe Objective-C, too.</p>
+
+<!--more-->
+
+<p>So far, I have written a simplified representation of C
+<sup id="fnref:cil-reference"><a href="#fn:cil-reference" class="footnote">1</a></sup> using normal algebraic datatypes. This will allow me
+to have a loosely-typed intermediate representation, which I can then
+pretty print. The pretty printer I have implemented using the Format
+module from stdlib. It already supports types, expressions and
+statements, but no global definitions and declarations, yet.  To print
+OCaml code, I will use Format again for a first draft, and switch to
+CamlP4, should the need arise. I briefly considered using CamlP4
+quotations for the whole project, but that would necessitate
+quotations and parsers for each language to bind. Unfortunately, my
+parser-fu is not up-to scratch, and the sparse documentation for
+CamlP4 is not helping either. <sup id="fnref:camlp4-notes"><a href="#fn:camlp4-notes" class="footnote">2</a></sup> Maybe it is time to dust
+of the dragon books?</p>
+
+<p>The EDSL that I am currently working on uses a feature just recently
+introduced with OCaml 4.0: <a href="http://caml.inria.fr/pub/docs/manual-ocaml-4.00/manual021.html#toc85">generalized algebraic datatypes</a>, or
+GADT for short. This will allow me to use OCaml’s type-inference and
+-checking for the FFI description language. So basically, I’m writing
+a strongly-typed code generator in OCaml. When run, this generator
+will in turn create the necessary OCaml and C code, constituting a
+particular OCaml foreign function interface.</p>
+
+<p>One thing I’ve come to notice when working with GADTs is that it helps
+to have as much type annotations as possible in the beginning. Only
+later on, when everything is working, can some annotations be
+removed. Otherwise, there will be a lot of strange type errors. Which
+for a mere software engineer like me are sometimes hard to
+understand. With type annotations, the error messages are usually much
+clearer.  I’ve found that recursive functions help a lot, as they are
+probably easiest to annotate and allow me to structure the code a
+little better. A concrete example is the following bind function:</p>
+
+<p><code>ocaml
+let rec bind : type s r. (r,s) fn -&gt; s -&gt; r = fun fs f -&gt; 
+  match fs with
+  | FVoid _ -&gt; f
+  | FLambda (t,n,fs') -&gt; let x = XId (t,n) in bind fs' (f x)
+</code></p>
+
+<p>With mutually recursive functions and additional type informations,
+the above example would look like this:</p>
+
+<p><code>ocaml
+let rec bind :
+  type s r. (r,s) fn -&gt; s -&gt; r =
+      fun fs f -&gt; 
+        match fs with
+        | FVoid _ -&gt; bind0 f
+        | FLambda (t,n,fs') -&gt; bind1 t n fs' f
+and bind0 :
+  type a. a x -&gt; a x =
+      fun f -&gt; f
+and bind1 :
+  type a r s. a t -&gt; string -&gt; (r x, s) fn -&gt; (a x -&gt; s) -&gt; r x = 
+      fun t n fs f -&gt;
+        let x = XId (t,n) in bind fs (f x)
+</code></p>
+
+<p>With the following types, interested readers should be able to toy
+around with the above functions in OCaml (Version 4.0 is required):</p>
+
+<p><code>ocaml
+(* Type of a value *)
+type _ t =
+  | TVoid       : unit t
+  | TInt        : int t
+  | TFun        : ('r,'a) fn                    -&gt; ('r,'a) fn t 
+(* Values / expressions *)
+and _ x =
+  | XInt        : int                           -&gt; int x
+  | XId         : 'a t * id                     -&gt; 'a x
+  | XAdd        : int x * int x                 -&gt; int x
+  | XApp0       : ('r x,'r x) fn x              -&gt; 'r x 
+  | XApp1       : ('r,'a x -&gt; 'b) fn x * 'a x   -&gt; ('r,'b) fn x
+(* Function signature *)
+and (_,_) fn =
+  | FVoid       : 'r t                          -&gt; ('r x,'r x) fn
+  | FLambda     : 'a t * id * ('r x,'b) fn      -&gt; ('r x,'a x -&gt; 'b) fn
+(* Identifier *)
+and id = string
+</code></p>
+
+<div class="footnotes">
+  <ol>
+    <li id="fn:cil-reference">
+      <p>I am aware of <a href="https://github.com/cil-project/cil">CIL</a>, but it seems to heavyweight for my purposes, and does not support Objective-C. And I view this whole exercise as a learning experience. <a href="#fnref:cil-reference" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:camlp4-notes">
+      <p>There is now at least a wiki for <a href="http://brion.inria.fr/gallium/index.php/Camlp4">CamlP4</a>. And Andrei Formiga has a <a href="http://andreiformiga.com/blog/?p=99">nice collection</a> of links on the subject. <a href="#fnref:camlp4-notes" class="reversefootnote">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+]]></content>
+  </entry>
+  
+</feed>

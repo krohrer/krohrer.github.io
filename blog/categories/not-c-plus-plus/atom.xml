@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Not C++ | λ-müesli]]></title>
+  <link href="http://krohrer.github.io/blog/categories/not-c-plus-plus/atom.xml" rel="self"/>
+  <link href="http://krohrer.github.io/"/>
+  <updated>2015-01-10T05:28:57+01:00</updated>
+  <id>http://krohrer.github.io/</id>
+  <author>
+    <name><![CDATA[Kaspar M. Rohrer]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[A Little Something...]]></title>
+    <link href="http://krohrer.github.io/blog/2010/04/13/little-something/"/>
+    <updated>2010-04-13T00:00:00+02:00</updated>
+    <id>http://krohrer.github.io/blog/2010/04/13/little-something</id>
+    <content type="html"><![CDATA[<p><img class="center" src="/images/Screen+shot+2010-04-14+at+12.16.07+AM.png"></p>
+
+<p>Here is a little preview of what I am working on at the moment. It is
+a little library for the beautiful <sup id="fnref:ocaml-warts"><a href="#fn:ocaml-warts" class="footnote">1</a></sup> <a href="http://caml.inria.fr/ocaml/index.en.html">OCaml</a> programming language
+that allows one to inspect any OCaml value in the <a href="http://en.wikipedia.org/wiki/Read-eval-print_loop">REPL</a> by dumping
+pretty printed <a href="http://en.wikipedia.org/wiki/S-expression">S-expressions</a> or producing output for <a href="http://www.graphviz.org">Graphviz</a>.</p>
+
+<p>Something along the lines of</p>
+
+<p><code>ocaml
+val dump : ?context:dump_context -&gt; ‘a -&gt; unit
+val dot : ?context:dot_context -&gt; ‘a -&gt; unit
+</code></p>
+
+<p>There will be more.</p>
+
+<p>Oh, and I am trying out the <a href="https://github.com/mmottl/ocaml-makefile">OCamlMakefile</a> as a substitute for
+<a href="http://omake.metaprl.org/index.html">OMake</a>, and I must say I really like it so far. Although OMake has
+served me well in the past.</p>
+
+<div class="footnotes">
+  <ol>
+    <li id="fn:ocaml-warts">
+      <p>Too be fair, she has some warts, especially with regard to her looks (the quirky syntax). Plus, it can be hard to understand the things she throws at you when you do something wrong (the error messages).  After spending some quality time with OCaml, however, I never ever want to go back to the beast that is C++. That was such an abusive relationship. C on the other hand… <a href="#fnref:ocaml-warts" class="reversefootnote">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+]]></content>
+  </entry>
+  
+</feed>

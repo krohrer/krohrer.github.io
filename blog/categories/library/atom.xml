@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Library | λ-müesli]]></title>
+  <link href="http://krohrer.github.io/blog/categories/library/atom.xml" rel="self"/>
+  <link href="http://krohrer.github.io/"/>
+  <updated>2015-01-10T05:28:57+01:00</updated>
+  <id>http://krohrer.github.io/</id>
+  <author>
+    <name><![CDATA[Kaspar M. Rohrer]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[I'm on Github Now]]></title>
+    <link href="http://krohrer.github.io/blog/2010/04/15/im-on-github-now/"/>
+    <updated>2010-04-15T00:00:00+02:00</updated>
+    <id>http://krohrer.github.io/blog/2010/04/15/im-on-github-now</id>
+    <content type="html"><![CDATA[<p>It is done. I now have an account on Github and my [repo0][first open source
+repository] has just been pushed. Feel free to take it for a spin. And
+don’t forget to tell me what you think of it.</p>
+
+<p>Anyway, after downloading and unpacking the library, just follow the
+installation instructions in the README file. If you have <a href="http://projects.camlcity.org/projects/findlib.html">findlib</a>
+installed, using the library is as simple as typing</p>
+
+<p><code>ocaml
+#use “topfind”;;
+#require “inspect”;;
+</code></p>
+
+<p>into your OCaml prompt. I suggest you open the Inspect module as well.</p>
+
+<p><code>ocaml
+open Inspect
+</code></p>
+
+<p>For starters, both the Dot and the Sexpr library provide a test_data
+function to generate some interesting data to dump.</p>
+
+<p><code>ocaml
+Sexpr.dump (Sexpr.test_data ());;
+Dot.dump (Dot.test_data ());;
+</code></p>
+
+<p>If you are on a Mac, the Inspect.Dot.dump_osx function should be of
+interest. It writes the DOT output to a temporary file, uses Graphviz
+to generate the graph, and displays the results using the open
+command.</p>
+
+<p><code>ocaml
+Dot.dump_osx (Dot.test_data());;
+</code></p>
+
+<p>It goes without saying that you should have Graphviz installed for
+this last part to work.</p>
+
+<p>Have fun!</p>
+
+]]></content>
+  </entry>
+  
+</feed>
