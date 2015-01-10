@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Repl | λ-müesli]]></title>
   <link href="http://krohrer.github.io/blog/categories/repl/atom.xml" rel="self"/>
   <link href="http://krohrer.github.io/"/>
-  <updated>2015-01-10T05:52:45+01:00</updated>
+  <updated>2015-01-10T06:24:16+01:00</updated>
   <id>http://krohrer.github.io/</id>
   <author>
     <name><![CDATA[Kaspar M. Rohrer]]></name>
@@ -18,14 +18,8 @@
     <link href="http://krohrer.github.io/blog/2010/04/13/little-something/"/>
     <updated>2010-04-13T00:00:00+02:00</updated>
     <id>http://krohrer.github.io/blog/2010/04/13/little-something</id>
-    <content type="html"><![CDATA[<p><img src="/images/Screen+shot+2010-04-14+at+12.16.07+AM.png" alt="Illustrative image" /></p>
-
-<p><img src="/images/Screen+shot+2010-04-14+at+12.16.07+AM.png" alt="Illustrative image" /></p>
-
-<p><img class="center" src="/images/Screen+shot+2010-04-14+at+12.16.07+AM.png"></p>
-
-<p>Here is a little preview of what I am working on at the moment. It is
-a little library for the beautiful <sup id="fnref:ocaml-warts"><a href="#fn:ocaml-warts" class="footnote">1</a></sup> <a href="http://caml.inria.fr/ocaml/index.en.html">OCaml</a> programming language
+    <content type="html"><![CDATA[<p>Here is a little preview of what I am working on at the moment. It is
+a small library for the beautiful <sup id="fnref:ocaml-warts"><a href="#fn:ocaml-warts" class="footnote">1</a></sup> <a href="http://caml.inria.fr/ocaml/index.en.html">OCaml</a> programming language
 that allows one to inspect any OCaml value in the <a href="http://en.wikipedia.org/wiki/Read-eval-print_loop">REPL</a> by dumping
 pretty printed <a href="http://en.wikipedia.org/wiki/S-expression">S-expressions</a> or producing output for <a href="http://www.graphviz.org">Graphviz</a>.</p>
 
