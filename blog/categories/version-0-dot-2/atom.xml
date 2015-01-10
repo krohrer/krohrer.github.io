@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Version 0.2 | λ-müesli]]></title>
   <link href="http://krohrer.github.io/blog/categories/version-0-dot-2/atom.xml" rel="self"/>
   <link href="http://krohrer.github.io/"/>
-  <updated>2015-01-10T06:24:16+01:00</updated>
+  <updated>2015-01-10T06:32:45+01:00</updated>
   <id>http://krohrer.github.io/</id>
   <author>
     <name><![CDATA[Kaspar M. Rohrer]]></name>
@@ -25,10 +25,11 @@ instructions), documentation using ocamldoc (<code>make htdoc</code>), and
 packaging using the <code>-pack</code> option of the OCaml compiler. And easier
 installation with make using the new install/uninstall targets.</p>
 
-<p>The next step will be to host the project on
-http://forge.ocamlcore.org/, so it has more exposure to the intended
-target audience. I’ve already registered the project as
-caml-inspect. I am currently awaiting approval from the site admins.</p>
+<p>The next step will be to host the project on <a href="https://forge.ocamlcore.org/">OCaml Forge</a>, so it
+has more exposure to the intended target audience. I’ve already
+registered the project as caml-inspect. I am currently awaiting
+approval from the site admins.</p>
+
 ]]></content>
   </entry>
   

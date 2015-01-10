@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Library | λ-müesli]]></title>
   <link href="http://krohrer.github.io/blog/categories/library/atom.xml" rel="self"/>
   <link href="http://krohrer.github.io/"/>
-  <updated>2015-01-10T06:24:16+01:00</updated>
+  <updated>2015-01-10T06:32:45+01:00</updated>
   <id>http://krohrer.github.io/</id>
   <author>
     <name><![CDATA[Kaspar M. Rohrer]]></name>
@@ -18,8 +18,8 @@
     <link href="http://krohrer.github.io/blog/2010/04/15/im-on-github-now/"/>
     <updated>2010-04-15T00:00:00+02:00</updated>
     <id>http://krohrer.github.io/blog/2010/04/15/im-on-github-now</id>
-    <content type="html"><![CDATA[<p>It is done. I now have an account on Github and my [repo0][first open source
-repository] has just been pushed. Feel free to take it for a spin. And
+    <content type="html"><![CDATA[<p>It is done. I now have an account on Github and my <a href="http://github.com/krohrer/caml-inspect/">first open source
+repository</a> has just been pushed. Feel free to take it for a spin. And
 don’t forget to tell me what you think of it.</p>
 
 <p>Anyway, after downloading and unpacking the library, just follow the
