@@ -19,6 +19,10 @@ a small library for the beautiful [^ocaml-warts] [OCaml] programming language
 that allows one to inspect any OCaml value in the [REPL] by dumping
 pretty printed [S-expressions] or producing output for [Graphviz].
 
+<!--more-->
+
+{%img center /images/inspect-test-dot-dump.png %}
+
 Something along the lines of
 
 ```ocaml

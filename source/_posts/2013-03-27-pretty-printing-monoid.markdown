@@ -22,10 +22,9 @@ void (** h[2][1])(void*,
 
 Plugging this type into http://cdecl.org gives
 
-> declare h as array 2 of array 1 of pointer to pointer to function
-> (pointer to void, pointer to function (pointer to void, pointer to
-> const int) returning void) returning void
-
+	declare h as array 2 of array 1 of pointer to pointer to function
+	(pointer to void, pointer to function (pointer to void, pointer to
+	const int) returning void) returning void
 
 [^c-syntax]: [OCaml-zimt](http://github.com/krohrer/ocaml-zimt), an OCaml foreign function interface generator for the C language family. Work in progress.
 

@@ -15,6 +15,8 @@ Yeah, well...
 The time has come for me to expose myself and my interests to the
 whole world.
 
+<!--more-->
+
 Just sitting in the proverbial basement and hacking the nights away,
 absorbing knowledge (well, mostly just surfing the
 [internet](http://welcometointernet.org)[^dont-click] ;-) and never sharing any

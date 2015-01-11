@@ -15,6 +15,8 @@ It is done. I now have an account on Github and my [first open source
 repository][repo0] has just been pushed. Feel free to take it for a spin. And
 don’t forget to tell me what you think of it.
 
+<!--more-->
+
 Anyway, after downloading and unpacking the library, just follow the
 installation instructions in the README file. If you have [findlib]
 installed, using the library is as simple as typing
