@@ -18,6 +18,8 @@ Ranked by priority:
 
 0. Write articles about fundament and iteratees
 
+0. Delete old blogger post and maybe ocaml forge account / site
+
 0. Create own Octopress style
 
 0. Go to sleep.
