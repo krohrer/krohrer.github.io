@@ -57,9 +57,9 @@ Oleg Kiselyov’s Iteratees in OCaml, &hellip;">
 </form>
   
 <ul class="main-navigation">
-  <li><a href="/about">About</a></li>
   <li><a href="/">Blog</a></li>
   <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
 </ul>
 
 </nav>
@@ -241,47 +241,12 @@ never really had the time to get aquainted.</p>
 repository</a> has just been pushed. Feel free to take it for a spin. And
 don’t forget to tell me what you think of it.</p>
 
-<p>Anyway, after downloading and unpacking the library, just follow the
-installation instructions in the README file. If you have <a href="http://projects.camlcity.org/projects/findlib.html">findlib</a>
-installed, using the library is as simple as typing</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-</pre></td><td class="code"><pre><code class="ocaml"><span class="line"><span class="o">#</span><span class="n">use</span> <span class="err">“</span><span class="n">topfind</span><span class="err">”</span><span class="o">;;</span>
-</span><span class="line"><span class="o">#</span><span class="n">require</span> <span class="err">“</span><span class="n">inspect</span><span class="err">”</span><span class="o">;;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>into your OCaml prompt. I suggest you open the Inspect module as well.</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="ocaml"><span class="line"><span class="k">open</span> <span class="nc">Inspect</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>For starters, both the Dot and the Sexpr library provide a test_data
-function to generate some interesting data to dump.</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-</pre></td><td class="code"><pre><code class="ocaml"><span class="line"><span class="nn">Sexpr</span><span class="p">.</span><span class="n">dump</span> <span class="o">(</span><span class="nn">Sexpr</span><span class="p">.</span><span class="n">test_data</span> <span class="bp">()</span><span class="o">);;</span>
-</span><span class="line"><span class="nn">Dot</span><span class="p">.</span><span class="n">dump</span> <span class="o">(</span><span class="nn">Dot</span><span class="p">.</span><span class="n">test_data</span> <span class="bp">()</span><span class="o">);;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>If you are on a Mac, the Inspect.Dot.dump_osx function should be of
-interest. It writes the DOT output to a temporary file, uses Graphviz
-to generate the graph, and displays the results using the open
-command.</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="ocaml"><span class="line"><span class="nn">Dot</span><span class="p">.</span><span class="n">dump_osx</span> <span class="o">(</span><span class="nn">Dot</span><span class="p">.</span><span class="n">test_data</span><span class="bp">()</span><span class="o">);;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>It goes without saying that you should have Graphviz installed for
-this last part to work.</p>
-
-<p>Have fun!</p>
-
 </div>
   
+  
+    <footer>
+      <a rel="full-article" href="/blog/2010/04/15/im-on-github-now/">Read on &rarr;</a>
+    </footer>
   
 
 
@@ -308,15 +273,15 @@ this last part to work.</p>
   </header>
 
 
-  <div class="entry-content"><p><img class="center" src="/images/bsp-tree-dot-dump.png" />
-<img class="center" src="/images/bsp-tree-opengl.png" /></p>
-
-<p>The main motive behind the Inspect library was to be able to see the
+  <div class="entry-content"><p>The main motive behind the Inspect library was to be able to see the
 actual datastructure of a previous project of mine.</p>
 
-<p>Seems like some things could be optimized…</p>
 </div>
   
+  
+    <footer>
+      <a rel="full-article" href="/blog/2010/04/14/object-dump-of-bsp-tree/">Read on &rarr;</a>
+    </footer>
   
 
 
@@ -348,29 +313,12 @@ a small library for the beautiful <sup id="fnref:ocaml-warts"><a href="#fn:ocaml
 that allows one to inspect any OCaml value in the <a href="http://en.wikipedia.org/wiki/Read-eval-print_loop">REPL</a> by dumping
 pretty printed <a href="http://en.wikipedia.org/wiki/S-expression">S-expressions</a> or producing output for <a href="http://www.graphviz.org">Graphviz</a>.</p>
 
-<p>Something along the lines of</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-</pre></td><td class="code"><pre><code class="ocaml"><span class="line"><span class="k">val</span> <span class="n">dump</span> <span class="o">:</span> <span class="o">?</span><span class="n">context</span><span class="o">:</span><span class="n">dump_context</span> <span class="o">-&gt;</span> <span class="err">‘</span><span class="n">a</span> <span class="o">-&gt;</span> <span class="kt">unit</span>
-</span><span class="line"><span class="k">val</span> <span class="n">dot</span> <span class="o">:</span> <span class="o">?</span><span class="n">context</span><span class="o">:</span><span class="n">dot_context</span> <span class="o">-&gt;</span> <span class="err">‘</span><span class="n">a</span> <span class="o">-&gt;</span> <span class="kt">unit</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>There will be more.</p>
-
-<p>Oh, and I am trying out the <a href="https://github.com/mmottl/ocaml-makefile">OCamlMakefile</a> as a substitute for
-<a href="http://omake.metaprl.org/index.html">OMake</a>, and I must say I really like it so far. Although OMake has
-served me well in the past.</p>
-
-<div class="footnotes">
-  <ol>
-    <li id="fn:ocaml-warts">
-      <p>Too be fair, she has some warts, especially with regard to her looks (the quirky syntax). Plus, it can be hard to understand the things she throws at you when you do something wrong (the error messages).  After spending some quality time with OCaml, however, I never ever want to go back to the beast that is C++. That was such an abusive relationship. C on the other hand… <a href="#fnref:ocaml-warts" class="reversefootnote">&#8617;</a></p>
-    </li>
-  </ol>
-</div>
 </div>
   
+  
+    <footer>
+      <a rel="full-article" href="/blog/2010/04/13/little-something/">Read on &rarr;</a>
+    </footer>
   
 
 
@@ -402,29 +350,12 @@ served me well in the past.</p>
 <p>The time has come for me to expose myself and my interests to the
 whole world.</p>
 
-<p>Just sitting in the proverbial basement and hacking the nights away,
-absorbing knowledge (well, mostly just surfing the
-<a href="http://welcometointernet.org">internet</a><sup id="fnref:dont-click"><a href="#fn:dont-click" class="footnote">1</a></sup> ;-) and never sharing any
-output with the world does not cut it for me anymore, I guess.</p>
-
-<p>I will still enjoy spending the occasional sleepless night slouched in
-front of my warmly glowing monitor, with the cursor eagerly blinking
-while Emacs patiently waits for my input. However, as of this day, I
-will also try to share some of my ideas and thoughts with the rest of
-the world (or at least the miniscule part of it that might be
-interested in what I have to say).</p>
-
-<p>That’s all for now. More to follow.</p>
-
-<div class="footnotes">
-  <ol>
-    <li id="fn:dont-click">
-      <p>Don’t click that link, please. <a href="#fnref:dont-click" class="reversefootnote">&#8617;</a></p>
-    </li>
-  </ol>
-</div>
 </div>
   
+  
+    <footer>
+      <a rel="full-article" href="/blog/2010/04/13/alright-here-goes-nothing/">Read on &rarr;</a>
+    </footer>
   
 
 

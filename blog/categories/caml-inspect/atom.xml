@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Caml-inspect | λ-müesli]]></title>
   <link href="http://krohrer.github.io/blog/categories/caml-inspect/atom.xml" rel="self"/>
   <link href="http://krohrer.github.io/"/>
-  <updated>2015-01-10T06:44:25+01:00</updated>
+  <updated>2015-01-12T07:04:19+01:00</updated>
   <id>http://krohrer.github.io/</id>
   <author>
     <name><![CDATA[Kaspar M. Rohrer]]></name>
@@ -41,6 +41,8 @@ approval from the site admins.</p>
     <content type="html"><![CDATA[<p>It is done. I now have an account on Github and my <a href="http://github.com/krohrer/caml-inspect/">first open source
 repository</a> has just been pushed. Feel free to take it for a spin. And
 don’t forget to tell me what you think of it.</p>
+
+<!--more-->
 
 <p>Anyway, after downloading and unpacking the library, just follow the
 installation instructions in the README file. If you have <a href="http://projects.camlcity.org/projects/findlib.html">findlib</a>
