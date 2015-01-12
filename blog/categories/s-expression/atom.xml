@@ -4,7 +4,7 @@
   <title><![CDATA[Category: S-expression | λ-müesli]]></title>
   <link href="http://krohrer.github.io/blog/categories/s-expression/atom.xml" rel="self"/>
   <link href="http://krohrer.github.io/"/>
-  <updated>2015-01-12T07:04:19+01:00</updated>
+  <updated>2015-01-13T00:27:52+01:00</updated>
   <id>http://krohrer.github.io/</id>
   <author>
     <name><![CDATA[Kaspar M. Rohrer]]></name>
@@ -12,24 +12,6 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
-  
-  <entry>
-    <title type="html"><![CDATA[Bugfix for S-expression Dumping]]></title>
-    <link href="http://krohrer.github.io/blog/2010/04/16/bugfix-for-s-expression-dumping/"/>
-    <updated>2010-04-16T00:00:00+02:00</updated>
-    <id>http://krohrer.github.io/blog/2010/04/16/bugfix-for-s-expression-dumping</id>
-    <content type="html"><![CDATA[<p>I’ve pushed a new version of the code. The code to dump s-expressions
-did not handle references correctly, but it should now.</p>
-
-<p>Maybe next time, I should prove the correctness using <a href="http://www.lix.polytechnique.fr/coq/">Coq</a>. But then I
-would not be writing new code, would I?</p>
-
-<p>Ah, what a dilemma between theoretical exactness and practical
-application. I wonder if Haskell will bridge that gap elegantly. We
-never really had the time to get aquainted.</p>
-
-]]></content>
-  </entry>
   
   <entry>
     <title type="html"><![CDATA[A Little Something...]]></title>

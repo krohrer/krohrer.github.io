@@ -4,7 +4,7 @@
   <title><![CDATA[λ-müesli]]></title>
   <link href="http://krohrer.github.io/atom.xml" rel="self"/>
   <link href="http://krohrer.github.io/"/>
-  <updated>2015-01-12T07:04:19+01:00</updated>
+  <updated>2015-01-13T00:27:52+01:00</updated>
   <id>http://krohrer.github.io/</id>
   <author>
     <name><![CDATA[Kaspar M. Rohrer]]></name>
@@ -186,24 +186,6 @@ approval from the site admins.</p>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Bugfix for S-expression Dumping]]></title>
-    <link href="http://krohrer.github.io/blog/2010/04/16/bugfix-for-s-expression-dumping/"/>
-    <updated>2010-04-16T00:00:00+02:00</updated>
-    <id>http://krohrer.github.io/blog/2010/04/16/bugfix-for-s-expression-dumping</id>
-    <content type="html"><![CDATA[<p>I’ve pushed a new version of the code. The code to dump s-expressions
-did not handle references correctly, but it should now.</p>
-
-<p>Maybe next time, I should prove the correctness using <a href="http://www.lix.polytechnique.fr/coq/">Coq</a>. But then I
-would not be writing new code, would I?</p>
-
-<p>Ah, what a dilemma between theoretical exactness and practical
-application. I wonder if Haskell will bridge that gap elegantly. We
-never really had the time to get aquainted.</p>
-
-]]></content>
-  </entry>
-  
-  <entry>
     <title type="html"><![CDATA[I'm on Github Now]]></title>
     <link href="http://krohrer.github.io/blog/2010/04/15/im-on-github-now/"/>
     <updated>2010-04-15T00:00:00+02:00</updated>
@@ -257,23 +239,6 @@ this last part to work.</p>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Object-dump of a BSP-tree]]></title>
-    <link href="http://krohrer.github.io/blog/2010/04/14/object-dump-of-bsp-tree/"/>
-    <updated>2010-04-14T00:00:00+02:00</updated>
-    <id>http://krohrer.github.io/blog/2010/04/14/object-dump-of-bsp-tree</id>
-    <content type="html"><![CDATA[<p>The main motive behind the Inspect library was to be able to see the
-actual datastructure of a previous project of mine.</p>
-
-<!--more-->
-
-<p><img class="center" src="http://krohrer.github.io/images/bsp-tree-dot-dump.png" />
-<img class="center" src="http://krohrer.github.io/images/bsp-tree-opengl.png" /></p>
-
-<p>Seems like some things could be optimized…</p>
-]]></content>
-  </entry>
-  
-  <entry>
     <title type="html"><![CDATA[A Little Something...]]></title>
     <link href="http://krohrer.github.io/blog/2010/04/13/little-something/"/>
     <updated>2010-04-13T00:00:00+02:00</updated>
@@ -305,42 +270,6 @@ served me well in the past.</p>
   <ol>
     <li id="fn:ocaml-warts">
       <p>Too be fair, she has some warts, especially with regard to her looks (the quirky syntax). Plus, it can be hard to understand the things she throws at you when you do something wrong (the error messages).  After spending some quality time with OCaml, however, I never ever want to go back to the beast that is C++. That was such an abusive relationship. C on the other hand… <a href="#fnref:ocaml-warts" class="reversefootnote">&#8617;</a></p>
-    </li>
-  </ol>
-</div>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Alright, Here Goes Nothing.]]></title>
-    <link href="http://krohrer.github.io/blog/2010/04/13/alright-here-goes-nothing/"/>
-    <updated>2010-04-13T00:00:00+02:00</updated>
-    <id>http://krohrer.github.io/blog/2010/04/13/alright-here-goes-nothing</id>
-    <content type="html"><![CDATA[<p>Yeah, well…</p>
-
-<p>The time has come for me to expose myself and my interests to the
-whole world.</p>
-
-<!--more-->
-
-<p>Just sitting in the proverbial basement and hacking the nights away,
-absorbing knowledge (well, mostly just surfing the
-<a href="http://welcometointernet.org">internet</a><sup id="fnref:dont-click"><a href="#fn:dont-click" class="footnote">1</a></sup> ;-) and never sharing any
-output with the world does not cut it for me anymore, I guess.</p>
-
-<p>I will still enjoy spending the occasional sleepless night slouched in
-front of my warmly glowing monitor, with the cursor eagerly blinking
-while Emacs patiently waits for my input. However, as of this day, I
-will also try to share some of my ideas and thoughts with the rest of
-the world (or at least the miniscule part of it that might be
-interested in what I have to say).</p>
-
-<p>That’s all for now. More to follow.</p>
-
-<div class="footnotes">
-  <ol>
-    <li id="fn:dont-click">
-      <p>Don’t click that link, please. <a href="#fnref:dont-click" class="reversefootnote">&#8617;</a></p>
     </li>
   </ol>
 </div>
