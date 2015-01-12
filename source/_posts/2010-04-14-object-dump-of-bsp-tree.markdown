@@ -3,6 +3,7 @@ layout: post
 title: "Object-dump of a BSP-tree"
 date: 2010-04-14
 comments: false
+published: false
 categories:
  - ocaml
  - BSP-tree
