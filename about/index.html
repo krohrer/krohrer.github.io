@@ -5,12 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>About Me - λ-müesli</title>
+  <title>About Kaspar Rohrer - λ-müesli</title>
   <meta name="author" content="Kaspar M. Rohrer">
 
   
-  <meta name="description" content="About Me Jan 9th, 2015 10:11 pm I am a Software-Engineer with a knack for closures, algebraic
-data-types, pattern-matching, static typing, and a &hellip;">
+  <meta name="description" content="About Kaspar Rohrer Jan 9th, 2015 10:11 pm I am a Software-Engineer with a knack for closures, algebraic
+data-types, pattern-matching, static typing &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -69,7 +69,7 @@ data-types, pattern-matching, static typing, and a &hellip;">
 <article role="article">
   
   <header>
-    <h1 class="entry-title">About Me</h1>
+    <h1 class="entry-title">About Kaspar Rohrer</h1>
     <p class="meta">
 
 
@@ -80,33 +80,53 @@ data-types, pattern-matching, static typing, and a &hellip;">
   
   <p>I am a Software-Engineer with a knack for closures, algebraic
 data-types, pattern-matching, static typing, and a good module
-system. I use mostly OCaml nowadays.</p>
+system. I strive for clean, composable code and intuitive and
+responsive user interfaces.</p>
 
 <h2 id="work">Work</h2>
 
-<p>I am currently located in Zürich and would be availabe for hire. I
-have an <a href="/artefacts/cv-kaspar-m-rohrer.pdf">English CV</a> available for
-download, and a German one upon request. You can also simply
-<a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#107;&#097;&#115;&#112;&#097;&#114;&#046;&#114;&#111;&#104;&#114;&#101;&#114;&#064;&#103;&#109;&#097;&#105;&#108;&#046;&#099;&#111;&#109;">drop me a line</a>.</p>
+<p>I am currently located in Zürich and would be availabe for hire. I have an English as well as a German <a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#107;&#097;&#115;&#112;&#097;&#114;&#046;&#114;&#111;&#104;&#114;&#101;&#114;&#064;&#103;&#109;&#097;&#105;&#108;&#046;&#099;&#111;&#109;">CV available upon request.</a>.</p>
 
-<h2 id="portfolio">Portfolio</h2>
+<h2 id="projects">Projects</h2>
 
-<p>I have a few projects I am working on during my spare time. All of
-them are available on GitHub, but apart from <a href="http://krohrer.github.com/aisss06">aisss06</a> and
-<a href="http://krohrer.github.com/caml-inspect/">caml-inspect</a> none of them are quite ready yet for public
-consumption.</p>
+<p>This is a selection of personal projects I have worked on, either
+during my University time or in my spare time. Some of them are
+available on GitHub, and will be linked accordingly.</p>
 
 <ul>
   <li>
-    <p><strong><a href="http://krohrer.github.com/aisss06">AISSS06</a></strong> - A semester project I did during my years at ETH
-Zürich for the “Advanced Image Syntheis” course. In my youth, I
-dabbled in designing levels for Doom and Quake (when I was not just
-playing the games). However, none of my levels ever made it to
-fruition, but the idea that I should be able to generate the
-geometry using code rather than by hand stuck.</p>
+    <p><strong>Grammar-based Modeling of Floor Plans</strong></p>
+
+    <p>Master’s thesis at ETH Zürich under Prof. Dr. Markus Gross and
+  Pascal Mueller. Rule-based generation of floor plans on the basis
+  of shape grammars. Implemented in OCaml and [OCS]
+  scheme. [LablGTK] GUI with live rendering of production shapes
+  using [LablGL]. Integrated scheme REPL for debugging and
+  outputting SVG files.</p>
   </li>
   <li>
-    <p><strong><a href="http://krohrer.github.com/caml-inspect/">Caml-Inspect</a></strong> - Having worked with OCaml for a while and being
+    <p><strong>Integrating EWA Surface Splatting into OpenGL</strong></p>
+
+    <p>Semester thesis at ETH Zürich under Prof. Dr. Markus Gross and Tim
+  Weyrich. An OpenGL extension for the [Mesa graphics library][Mesa]
+  to support a point-based primitive (splats). Adapted
+  [Quake 2 source code] [Q2SRC] to demonstrate extension. Results
+  published in ‘07 [SIGGRAPH paper] [EWA07].</p>
+  </li>
+  <li>
+    <p><strong><a href="http://krohrer.github.com/aisss06">Generating and Rendering Procedural Buildings in 3D</a></strong></p>
+
+    <p>A semester project I did during my years at ETH Zürich for the
+“Advanced Image Syntheis” course. In my youth, I dabbled in
+designing levels for Doom and Quake (when I was not just playing the
+games). However, none of my levels ever made it to fruition. But the
+idea that I should be able to generate the geometry using code
+rather than by hand stuck.</p>
+  </li>
+  <li>
+    <p><strong><a href="http://krohrer.github.com/caml-inspect/">Inspection of Interal Value Representations in OCaml</a></strong></p>
+
+    <p>Having worked with OCaml for a while and being
 somewhat baffled by the limitation of integers to <em>(N-1)</em> bits on
 <em>N</em>-bit platforms, I became curious about how the OCaml runtime
 represents values internally. So I wrote this small library to dump
@@ -115,23 +135,17 @@ facilities provided by the <code>Format</code> module) or as <a href="http://gra
 files.</p>
   </li>
   <li>
-    <p><strong><a href="http://github.com/krohrer/caml-aesq/">Caml-Aesq</a></strong> - A text formatting library for ansi
-terminals. Supports text attributes, justification and alignment,
-multiple columns and indentations/margins. This library has been on
-ice for quite some time, although I still plan on adding hyphenation
-and maybe a Markdown parser as well.</p>
-  </li>
-  <li>
-    <p><strong><a href="http://github.com/krohrer/ocaml-zimt">OCaml-Zimt</a></strong> - Annoyed by the fact that writing C bindings for
-OCaml is a tedious undertaking, I decided to write an
-foreign-function interface generator for OCaml. Currently, the
-project contains an abstract syntax tree for C and a corresponding
-pretty printer. There is also the basic definitions of the Zimt
-language, an embedded DSL. The Zimt language is a somewhat
-simplified version of C, based on the idea that it should be easy to
-manipulate fragments of Zimt code using OCaml. This project is my
-playground for all the new and fancy features in OCaml like GADTs
-and first class modules.</p>
+    <p><strong><a href="http://github.com/krohrer/ocaml-zimt">A FFI generator for OCaml (Work in progress)</a></strong></p>
+
+    <p>Annoyed by the fact that writing C bindings for OCaml is a tedious
+undertaking, I decided to write an foreign-function interface
+generator for OCaml. Currently, the project contains an abstract
+syntax tree for C and a corresponding pretty printer. There is also
+the basic definitions of the Zimt language, an embedded DSL. The
+Zimt language is a somewhat simplified version of C, based on the
+idea that it should be easy to manipulate fragments of Zimt code
+using OCaml. This project is my playground for all the new and fancy
+features in OCaml like GADTs and first class modules.</p>
   </li>
 </ul>
 
